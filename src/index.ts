@@ -1,4 +1,4 @@
-import { setFailed, setOutput } from "@actions/core";
+import { setOutput } from "@actions/core";
 import { context } from "@actions/github";
 import axios from "./requests/axios";
 import * as utils from "./utils";
@@ -25,9 +25,7 @@ const run = async () => {
     console.log(result.data);
     setOutput("status", result.status);
   } catch (error) {
-    if (utils.isAxiosError(error)) console.log(error.response?.data || "Unknown error");
-    if (error instanceof Error) setFailed(error.message);
-    else setFailed("Unknown error")
+    console.error(error)
   }
 };
 
