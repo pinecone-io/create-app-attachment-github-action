@@ -15049,7 +15049,7 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
 const allowedProjects = getProjectsFromInput(ALLOWED_PROJECTS);
 const blockedProjects = getProjectsFromInput(BLOCKED_PROJECTS);
 const run = () => __awaiter(void 0, void 0, void 0, function* () {
-    var _a, _b, _c, _d, _e;
+    var _a, _b, _c, _d;
     try {
         validateTrigger(github.context.eventName);
         validateProjectLists(allowedProjects, blockedProjects);
@@ -15065,12 +15065,7 @@ const run = () => __awaiter(void 0, void 0, void 0, function* () {
         (0,core.setOutput)("status", result.status);
     }
     catch (error) {
-        if (isAxiosError(error))
-            console.log(((_e = error.response) === null || _e === void 0 ? void 0 : _e.data) || "Unknown error");
-        if (error instanceof Error)
-            (0,core.setFailed)(error.message);
-        else
-            (0,core.setFailed)("Unknown error");
+        console.error(error);
     }
 });
 run();
